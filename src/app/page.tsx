@@ -1,7 +1,21 @@
+import { Hero } from "@/components/sections/Hero";
+import { SpringCollection } from "@/components/sections/SpringCollection";
+import { ShopBySkin } from "@/components/sections/ShopBySkin";
+import { BestSellers } from "@/components/sections/BestSellers";
+import { RegimenSection } from "@/components/sections/RegimenSection";
+import { ResultsPreview } from "@/components/sections/ResultsPreview";
+import { ReviewsSection } from "@/components/sections/ReviewsSection";
+
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center font-display text-3xl text-deep-bronze">
-      G&amp;B Natural Skincare
-    </div>
+    <>
+      <Hero />
+      <SpringCollection />
+      <ShopBySkin />
+      <BestSellers />
+      <RegimenSection />
+      <ResultsPreview />
+      <ReviewsSection />
+    </>
   );
 }
