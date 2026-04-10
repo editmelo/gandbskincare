@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { regimenProducts } from "@/data/products";
 
@@ -14,7 +15,7 @@ export function RegimenFlow({ highlightStep, dark = false }: RegimenFlowProps) {
         return (
           <div key={item.step} className="flex items-start gap-2 md:gap-4">
             <Link href={`/product/${item.product.slug}`} className="group block">
-              <div className={`text-center rounded-2xl p-4 md:p-5 transition-all duration-300 w-28 md:w-36 ${
+              <div className={`text-center rounded-2xl p-4 md:p-5 transition-all duration-300 w-32 md:w-40 ${
                 dark
                   ? "hover:bg-warm-gold/10"
                   : isHighlighted
@@ -24,9 +25,15 @@ export function RegimenFlow({ highlightStep, dark = false }: RegimenFlowProps) {
                 <div className="w-9 h-9 rounded-full bg-warm-gold text-white font-bold flex items-center justify-center font-display text-base mx-auto mb-3">
                   {i + 1}
                 </div>
-                <div className={`w-12 h-16 rounded-[14px_14px_6px_6px] mx-auto mb-2 ${
-                  dark ? "bg-warm-gold/10 border border-warm-gold/20" : "bg-gradient-to-b from-light-beige to-cream border border-warm-gold/20"
-                }`} />
+                {item.product.image ? (
+                  <div className="relative w-16 h-20 md:w-20 md:h-24 mx-auto mb-2">
+                    <Image src={item.product.image} alt={item.product.name} fill className="object-contain" sizes="80px" />
+                  </div>
+                ) : (
+                  <div className={`w-12 h-16 rounded-[14px_14px_6px_6px] mx-auto mb-2 ${
+                    dark ? "bg-warm-gold/10 border border-warm-gold/20" : "bg-gradient-to-b from-light-beige to-cream border border-warm-gold/20"
+                  }`} />
+                )}
                 <p className="kicker !mb-1">{item.label}</p>
                 <p className={`font-display text-xs ${dark ? "text-cream" : "text-deep-bronze"}`}>
                   {item.product.name.replace("Glow Cleansing Bar", "Glow Bar").replace("Nourish Moisturizing Oil", "Nourish Oil").replace("Rose Water Toner", "Rose Toner")}

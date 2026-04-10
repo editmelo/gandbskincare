@@ -27,6 +27,7 @@ export interface Product {
   keyIngredient?: { name: string; benefit: string };
   preorder?: boolean;
   image?: string;
+  turmeric?: boolean;
 }
 
 export const products: Product[] = [
@@ -50,6 +51,7 @@ export const products: Product[] = [
     springCollection: true,
     ingredients: ["Turmeric", "Raw Honey", "Coconut Oil", "Shea Butter", "Vitamin E"],
     keyIngredient: { name: "Turmeric", benefit: "A powerful antioxidant that brightens skin and reduces hyperpigmentation by inhibiting melanin production." },
+    turmeric: true,
   },
   {
     slug: "vitamin-c-serum",
@@ -82,6 +84,7 @@ export const products: Product[] = [
     bestSeller: true,
     ingredients: ["Alpha Arbutin", "Niacinamide", "Turmeric Extract", "Licorice Root", "Shea Butter"],
     keyIngredient: { name: "Alpha Arbutin", benefit: "A gentle skin-lightening agent that reduces melanin production to fade dark spots without irritation." },
+    turmeric: true,
   },
   {
     slug: "nighttime-dark-spot-corrector",
@@ -96,6 +99,7 @@ export const products: Product[] = [
     reviewCount: 87,
     ingredients: ["Retinol", "Niacinamide", "Vitamin C", "Turmeric", "Jojoba Oil"],
     keyIngredient: { name: "Retinol", benefit: "Accelerates cell turnover overnight to fade dark spots and reveal fresh, even-toned skin." },
+    turmeric: true,
   },
   {
     slug: "rose-water-toner",
@@ -198,6 +202,7 @@ export const products: Product[] = [
     springCollection: true,
     ingredients: ["Turmeric Powder", "Brown Sugar", "Coconut Oil", "Honey", "Lemon Essential Oil"],
     keyIngredient: { name: "Turmeric", benefit: "Brightens skin, reduces dark spots, and has anti-inflammatory properties that calm breakouts." },
+    turmeric: true,
   },
   {
     slug: "turmeric-mud-mask",
@@ -212,6 +217,7 @@ export const products: Product[] = [
     reviewCount: 48,
     ingredients: ["Kaolin Clay", "Turmeric", "Bentonite Clay", "Aloe Vera", "Tea Tree Oil"],
     keyIngredient: { name: "Kaolin Clay", benefit: "Gently draws out toxins and excess oil from pores without over-drying sensitive skin." },
+    turmeric: true,
   },
   {
     slug: "hydrating-jelly-mask",
@@ -244,6 +250,7 @@ export const products: Product[] = [
     reviewCount: 41,
     ingredients: ["Turmeric Extract", "Witch Hazel", "Aloe Vera", "Salicylic Acid", "Green Tea"],
     keyIngredient: { name: "Witch Hazel", benefit: "A natural toner and astringent that minimizes pores, reduces oil, and soothes irritation." },
+    turmeric: true,
   },
   {
     slug: "facial-cleansing-brush",
@@ -347,6 +354,7 @@ export const products: Product[] = [
     preorder: true,
     ingredients: ["Turmeric Extract", "Raw Honey", "Coconut-derived Surfactants", "Aloe Vera", "Vitamin C"],
     keyIngredient: { name: "Turmeric Extract", benefit: "Concentrated turmeric in liquid form for maximum brightening and anti-inflammatory benefits." },
+    turmeric: true,
   },
   {
     slug: "ultimate-glow-bundle",
@@ -409,4 +417,8 @@ export function getBestSellers(): Product[] {
 
 export function getSpringCollection(): Product[] {
   return products.filter(p => p.springCollection);
+}
+
+export function getTurmericProducts(): Product[] {
+  return products.filter(p => p.turmeric);
 }

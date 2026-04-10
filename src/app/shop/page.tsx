@@ -6,7 +6,7 @@ import { products, skinConcerns, type SkinConcern, type ProductCategory } from "
 import { ProductCard } from "@/components/shared/ProductCard";
 import { ConcernPill } from "@/components/shared/ConcernPill";
 
-const categories: { id: ProductCategory | "all"; label: string }[] = [
+const categories: { id: ProductCategory | "all" | "turmeric"; label: string }[] = [
   { id: "all", label: "All" },
   { id: "cleanser", label: "Cleansers" },
   { id: "serum", label: "Serums" },
@@ -14,7 +14,7 @@ const categories: { id: ProductCategory | "all"; label: string }[] = [
   { id: "mask", label: "Masks" },
   { id: "kit", label: "Kits & Bundles" },
   { id: "moisturizer", label: "Moisturizers" },
-  { id: "body", label: "Body" },
+  { id: "turmeric", label: "Turmeric" },
   { id: "yoni", label: "Yoni" },
 ];
 
@@ -25,7 +25,7 @@ function ShopContent() {
   const initialConcern = searchParams.get("concern") as SkinConcern | null;
 
   const [activeConcern, setActiveConcern] = useState<SkinConcern | null>(initialConcern);
-  const [activeCategory, setActiveCategory] = useState<ProductCategory | "all">("all");
+  const [activeCategory, setActiveCategory] = useState<ProductCategory | "all" | "turmeric">("all");
   const [sort, setSort] = useState<SortOption>("featured");
 
   const filtered = useMemo(() => {
@@ -33,7 +33,9 @@ function ShopContent() {
     if (activeConcern) {
       result = result.filter(p => p.concerns.includes(activeConcern));
     }
-    if (activeCategory !== "all") {
+    if (activeCategory === "turmeric") {
+      result = result.filter(p => p.turmeric);
+    } else if (activeCategory !== "all") {
       result = result.filter(p => p.category === activeCategory);
     }
     switch (sort) {
