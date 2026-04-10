@@ -73,13 +73,17 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10 max-w-4xl mx-auto">
             {[
-              { src: "/hero-banner-1.png", alt: "G&B products and skincare routine" },
+              { src: "/products/nourish-moisturizing-oil.jpg", alt: "Nourish Moisturizing Oil" },
               { src: "/products/glow-cleansing-bar.jpg", alt: "Glow Cleansing Bar" },
-              { src: "/hero-banner-2.png", alt: "G&B Moisturizing Oil benefits" },
+              { src: "/products/dark-spot-cream.jpg", alt: "Dark Spot Cream" },
               { src: "/products/vitamin-c-serum.jpg", alt: "Vitamin C Serum" },
             ].map((img, i) => (
-              <div key={i} className="aspect-square rounded-xl border border-warm-gold/10 overflow-hidden relative">
-                <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
+              <div key={i} className="group aspect-square rounded-xl border border-warm-gold/10 overflow-hidden relative cursor-pointer transition-all duration-300 hover:border-warm-gold/40 hover:shadow-[0_0_20px_rgba(186,135,73,0.25)] hover:scale-[1.03]">
+                <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width: 768px) 50vw, 25vw" />
+                <div className="absolute inset-0 bg-warm-gold/0 group-hover:bg-warm-gold/10 transition-colors duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-espresso/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-cream text-xs font-body text-center">{img.alt}</p>
+                </div>
               </div>
             ))}
           </div>
