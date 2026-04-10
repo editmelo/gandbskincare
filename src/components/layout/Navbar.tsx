@@ -3,26 +3,37 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { MobileNav } from "./MobileNav";
 
 const links = [
-  { href: "/shop", label: "Shop", match: "/shop" },
-  { href: "/shop?view=skin", label: "Your Skin", match: "/shop?view=skin" },
-  { href: "/results", label: "Results", match: "/results" },
-  { href: "/about", label: "About", match: "/about" },
+  { href: "/shop", label: "Shop" },
+  { href: "/shop?view=skin", label: "Your Skin" },
+  { href: "/results", label: "Results" },
+  { href: "/about", label: "About" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  function isLinkActive(link: typeof links[number]) {
+    if (link.label === "Shop") {
+      return pathname === "/shop" && !searchParams.get("view") && !searchParams.get("concern");
+    }
+    if (link.label === "Your Skin") {
+      return pathname === "/shop" && (searchParams.get("view") === "skin" || searchParams.has("concern"));
+    }
+    return pathname.startsWith(link.href.split("?")[0]) && link.label !== "Shop" && link.label !== "Your Skin";
+  }
 
   return (
     <>
@@ -38,12 +49,10 @@ export function Navbar() {
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             {links.map(link => {
-              const isActive = link.match === "/shop?concern"
-                ? pathname === "/shop" && false
-                : pathname.startsWith(link.match);
+              const isActive = isLinkActive(link);
               return (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
                   className={`relative font-body text-xs uppercase tracking-[0.2em] transition-colors pb-1 ${
                     isActive

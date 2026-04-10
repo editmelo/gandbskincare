@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useMemo, useCallback, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { products, skinConcerns, type SkinConcern, type ProductCategory } from "@/data/products";
 import { ProductCard } from "@/components/shared/ProductCard";
 import { ConcernPill } from "@/components/shared/ConcernPill";
@@ -23,6 +23,7 @@ type ViewMode = "shop" | "skin";
 
 function ShopContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const initialConcern = searchParams.get("concern") as SkinConcern | null;
   const initialView = searchParams.get("view") === "skin" || initialConcern ? "skin" : "shop";
 
@@ -30,6 +31,17 @@ function ShopContent() {
   const [activeConcern, setActiveConcern] = useState<SkinConcern | null>(initialConcern);
   const [activeCategory, setActiveCategory] = useState<ProductCategory | "all" | "turmeric">("all");
   const [sort, setSort] = useState<SortOption>("featured");
+
+  const switchView = useCallback((newView: ViewMode) => {
+    setView(newView);
+    if (newView === "skin") {
+      setActiveCategory("all");
+      router.replace("/shop?view=skin", { scroll: false });
+    } else {
+      setActiveConcern(null);
+      router.replace("/shop", { scroll: false });
+    }
+  }, [router]);
 
   const filtered = useMemo(() => {
     let result = [...products];
@@ -73,7 +85,7 @@ function ShopContent() {
           {/* View toggle */}
           <div className="flex items-center justify-center gap-1 mt-6 bg-light-beige/60 rounded-full p-1 max-w-xs mx-auto">
             <button
-              onClick={() => { setView("shop"); setActiveConcern(null); }}
+              onClick={() => switchView("shop")}
               className={`flex-1 text-xs font-body font-medium uppercase tracking-wider py-2.5 rounded-full transition-all duration-300 ${
                 view === "shop"
                   ? "bg-warm-gold text-white shadow-sm"
@@ -83,7 +95,7 @@ function ShopContent() {
               By Type
             </button>
             <button
-              onClick={() => { setView("skin"); setActiveCategory("all"); }}
+              onClick={() => switchView("skin")}
               className={`flex-1 text-xs font-body font-medium uppercase tracking-wider py-2.5 rounded-full transition-all duration-300 ${
                 view === "skin"
                   ? "bg-warm-gold text-white shadow-sm"
