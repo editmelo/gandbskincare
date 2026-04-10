@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export default function AboutPage() {
@@ -7,9 +8,9 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="kicker">Meet the Founder</p>
           <h1 className="font-display text-4xl md:text-5xl text-deep-bronze mt-2">Bryanne Buckhalter</h1>
-          <p className="font-body text-sm text-deep-bronze/50 mt-2">Founder &amp; Skincare Specialist</p>
-          <div className="w-36 h-36 rounded-full bg-gradient-to-br from-warm-gold/20 to-warm-gold/5 border-2 border-warm-gold/30 mx-auto mt-8 flex items-center justify-center">
-            <span className="font-display text-3xl text-warm-gold/40">B</span>
+          <p className="font-body text-sm text-deep-bronze/50 mt-2">Owner &amp; Skincare Specialist</p>
+          <div className="w-40 h-40 rounded-full border-2 border-warm-gold/30 mx-auto mt-8 overflow-hidden relative">
+            <Image src="/bryanne.jpg" alt="Bryanne Buckhalter" fill className="object-cover" sizes="160px" />
           </div>
         </div>
       </section>
@@ -17,13 +18,18 @@ export default function AboutPage() {
       <section className="py-12 md:py-16 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <div className="space-y-6 font-body text-base text-deep-bronze/80 leading-relaxed">
-            <p>G&amp;B Natural Skincare was born out of frustration — and love. For years, Bryanne searched for skincare products that actually worked without harsh chemicals, artificial fragrances, or ingredients she couldn&apos;t pronounce. Everything was either too expensive, too complicated, or simply didn&apos;t deliver.</p>
-            <p>So she started making her own. What began as kitchen experiments with turmeric, honey, and oils from her grandmother&apos;s recipes turned into something much bigger — a skincare line that actually worked, and a community of people who finally felt seen.</p>
+            <p>Hi, I&apos;m Bryanne, the founder of G&amp;B Natural Skincare — where we believe in bringing back your natural glow.</p>
+            <p>What started as a passion for self-care and healthy skin quickly turned into something much bigger. I&apos;ve always believed that skincare should be simple, natural, and effective, without harsh ingredients or confusion. After struggling to find products that truly nourished the skin, I decided to create my own.</p>
+            <p>G&amp;B Natural Skincare was built on the foundation of confidence, self-love, and wellness. Every product is thoughtfully crafted with natural ingredients designed to support your skin — not work against it.</p>
+
             <blockquote className="border-l-4 border-warm-gold pl-6 py-2 my-8">
-              <p className="font-display text-xl text-deep-bronze italic leading-relaxed">&ldquo;Every product is thoughtfully crafted with natural ingredients designed to support your skin — not work against it.&rdquo;</p>
+              <p className="font-display text-xl text-deep-bronze italic leading-relaxed">&ldquo;This brand is more than just skincare — it&apos;s about creating an experience.&rdquo;</p>
               <cite className="font-body text-sm text-warm-gold mt-2 block not-italic">— Bryanne</cite>
             </blockquote>
-            <p>Today, G&amp;B is more than just skincare — it&apos;s an experience. From pop-up events where Bryanne personally consults on skin concerns, to facial services that combine expertise with warmth, everything about G&amp;B is designed to make you feel confident in your own skin.</p>
+
+            <p>Whether you&apos;re using our products at home or booking a facial, my goal is to help you feel refreshed, confident, and glowing from the inside out.</p>
+            <p>I&apos;m also deeply passionate about educating others on the importance of self-care, hygiene, and healthy skincare routines. Through pop-ups, events, and community outreach, I strive to make skincare accessible and empowering for everyone.</p>
+            <p>Thank you for supporting my journey and trusting G&amp;B Natural Skincare to be part of yours.</p>
           </div>
         </div>
       </section>
