@@ -1,26 +1,148 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-warm-gold: #BA8749;
+  --color-deep-bronze: #885A2E;
+  --color-soft-taupe: #C9B08D;
+  --color-light-beige: #EAE0CC;
+  --color-cream: #F5EEDD;
+  --color-espresso: #1a1410;
+  --color-dark-brown: #2a1f16;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-fade-up: fade-up 0.6s ease-out forwards;
+  --animate-shimmer: shimmer 3s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.4s ease-out forwards;
+  --animate-scale-in: scale-in 0.3s ease-out forwards;
+  --animate-slide-down: slide-down 0.3s ease-out forwards;
+
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes slide-down {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-deep-bronze);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-warm-gold) 20%, transparent);
+    color: var(--color-deep-bronze);
+  }
+}
+
+@layer components {
+  .section-warm {
+    background-color: white;
+  }
+
+  .section-dark {
+    background: linear-gradient(to bottom, var(--color-espresso), var(--color-dark-brown));
+    color: var(--color-cream);
+  }
+
+  .gold-glow {
+    background: radial-gradient(circle, rgba(186, 135, 73, 0.1) 0%, transparent 70%);
+  }
+
+  .btn-gold {
+    background-color: var(--color-warm-gold);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s;
+  }
+  .btn-gold:hover {
+    background-color: var(--color-deep-bronze);
+    box-shadow: 0 10px 15px -3px color-mix(in srgb, var(--color-warm-gold) 20%, transparent);
+  }
+
+  .btn-gold-outline {
+    border: 1.5px solid var(--color-warm-gold);
+    color: var(--color-warm-gold);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s;
+  }
+  .btn-gold-outline:hover {
+    background-color: var(--color-warm-gold);
+    color: white;
+  }
+
+  .btn-bronze {
+    background-color: var(--color-deep-bronze);
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s;
+  }
+  .btn-bronze:hover {
+    background-color: var(--color-warm-gold);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  }
+
+  .kicker {
+    font-family: var(--font-body);
+    font-size: 0.625rem;
+    color: var(--color-warm-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
 }
