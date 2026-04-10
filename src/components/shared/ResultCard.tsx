@@ -10,9 +10,9 @@ export function ResultCard({ result }: ResultCardProps) {
   return (
     <div className="border border-warm-gold/20 rounded-2xl overflow-hidden">
       {result.image ? (
-        <div className="relative h-52 w-full">
+        <div className="relative h-72 md:h-80 w-full">
           <Image src={result.image} alt={`${result.concernLabel} results`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-          <div className="absolute bottom-2 left-2 bg-espresso/70 text-warm-gold text-[10px] font-body rounded-full px-3 py-1 backdrop-blur-sm">
+          <div className="absolute bottom-3 left-3 bg-espresso/70 text-warm-gold text-xs font-body rounded-full px-4 py-1.5 backdrop-blur-sm">
             {result.timeline}
           </div>
         </div>

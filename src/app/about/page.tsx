@@ -72,9 +72,14 @@ export default function AboutPage() {
             <p>Through facial services, workshops, and community outreach, G&amp;B is actively educating people about skincare, hygiene, and the power of natural ingredients. Because everyone deserves to understand their skin.</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10 max-w-4xl mx-auto">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="aspect-square rounded-xl bg-light-beige border border-warm-gold/10 flex items-center justify-center">
-                <span className="text-warm-gold/20 text-3xl">✦</span>
+            {[
+              { src: "/hero-banner-1.png", alt: "G&B products and skincare routine" },
+              { src: "/products/glow-cleansing-bar.jpg", alt: "Glow Cleansing Bar" },
+              { src: "/hero-banner-2.png", alt: "G&B Moisturizing Oil benefits" },
+              { src: "/products/vitamin-c-serum.jpg", alt: "Vitamin C Serum" },
+            ].map((img, i) => (
+              <div key={i} className="aspect-square rounded-xl border border-warm-gold/10 overflow-hidden relative">
+                <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
               </div>
             ))}
           </div>
