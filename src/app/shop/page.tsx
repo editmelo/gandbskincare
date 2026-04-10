@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, Suspense } from "react";
+import { useState, useMemo, useCallback, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { products, skinConcerns, type SkinConcern, type ProductCategory } from "@/data/products";
 import { ProductCard } from "@/components/shared/ProductCard";
@@ -31,6 +31,16 @@ function ShopContent() {
   const [activeConcern, setActiveConcern] = useState<SkinConcern | null>(initialConcern);
   const [activeCategory, setActiveCategory] = useState<ProductCategory | "all" | "turmeric">("all");
   const [sort, setSort] = useState<SortOption>("featured");
+
+  // Sync view state when URL params change (e.g. nav link clicked)
+  useEffect(() => {
+    const urlView = searchParams.get("view") === "skin" || searchParams.has("concern") ? "skin" : "shop";
+    setView(urlView);
+    if (urlView === "skin") {
+      const concern = searchParams.get("concern") as SkinConcern | null;
+      if (concern) setActiveConcern(concern);
+    }
+  }, [searchParams]);
 
   const switchView = useCallback((newView: ViewMode) => {
     setView(newView);
