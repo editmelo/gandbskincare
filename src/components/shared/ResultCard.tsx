@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Result } from "@/data/results";
 
@@ -8,22 +9,31 @@ interface ResultCardProps {
 export function ResultCard({ result }: ResultCardProps) {
   return (
     <div className="border border-warm-gold/20 rounded-2xl overflow-hidden">
-      <div className="flex">
-        <div className="flex-1 h-36 bg-warm-gold/[0.06] flex items-center justify-center border-r border-warm-gold/10">
-          <div className="text-center">
-            <p className="text-[10px] font-body text-soft-taupe mb-2 uppercase tracking-wider">Before</p>
-            <div className="w-16 h-16 rounded-full bg-warm-gold/10 border border-dashed border-warm-gold/20 mx-auto" />
+      {result.image ? (
+        <div className="relative h-52 w-full">
+          <Image src={result.image} alt={`${result.concernLabel} results`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+          <div className="absolute bottom-2 left-2 bg-espresso/70 text-warm-gold text-[10px] font-body rounded-full px-3 py-1 backdrop-blur-sm">
+            {result.timeline}
           </div>
         </div>
-        <div className="flex-1 h-36 bg-warm-gold/10 flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-[10px] font-body text-warm-gold mb-2 uppercase tracking-wider">
-              After — {result.weeksAfter} Weeks
-            </p>
-            <div className="w-16 h-16 rounded-full bg-warm-gold/[0.18] border border-warm-gold/30 mx-auto" />
+      ) : (
+        <div className="flex">
+          <div className="flex-1 h-36 bg-warm-gold/[0.06] flex items-center justify-center border-r border-warm-gold/10">
+            <div className="text-center">
+              <p className="text-[10px] font-body text-soft-taupe mb-2 uppercase tracking-wider">Before</p>
+              <div className="w-16 h-16 rounded-full bg-warm-gold/10 border border-dashed border-warm-gold/20 mx-auto" />
+            </div>
+          </div>
+          <div className="flex-1 h-36 bg-warm-gold/10 flex items-center justify-center">
+            <div className="text-center">
+              <p className="text-[10px] font-body text-warm-gold mb-2 uppercase tracking-wider">
+                After — {result.weeksAfter} Weeks
+              </p>
+              <div className="w-16 h-16 rounded-full bg-warm-gold/[0.18] border border-warm-gold/30 mx-auto" />
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div className="p-4">
         <span className="inline-block bg-warm-gold/10 text-warm-gold text-[10px] font-body rounded-full px-3 py-1 mb-2">
           {result.concernLabel}

@@ -9,8 +9,8 @@ export default function AboutPage() {
           <p className="kicker">Meet the Founder</p>
           <h1 className="font-display text-4xl md:text-5xl text-deep-bronze mt-2">Bryanne Buckhalter</h1>
           <p className="font-body text-sm text-deep-bronze/50 mt-2">Owner &amp; Skincare Specialist</p>
-          <div className="w-40 h-40 rounded-full border-2 border-warm-gold/30 mx-auto mt-8 overflow-hidden relative">
-            <Image src="/bryanne.jpg" alt="Bryanne Buckhalter" fill className="object-cover" sizes="160px" />
+          <div className="w-64 md:w-80 h-80 md:h-96 rounded-2xl mx-auto mt-8 overflow-hidden relative border-2 border-warm-gold/20 shadow-lg shadow-warm-gold/10">
+            <Image src="/bryanne.jpg" alt="Bryanne Buckhalter" fill className="object-cover" sizes="(max-width: 768px) 256px, 320px" />
           </div>
         </div>
       </section>
