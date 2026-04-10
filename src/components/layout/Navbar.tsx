@@ -46,8 +46,13 @@ export function Navbar() {
             ))}
           </nav>
           <div className="flex items-center gap-4">
-            <button className="font-body text-xs text-deep-bronze uppercase tracking-wider hover:text-warm-gold transition-colors">
-              Bag (0)
+            <button className="relative text-deep-bronze hover:text-warm-gold transition-colors" aria-label="Shopping bag">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 01-8 0" />
+              </svg>
+              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-warm-gold text-white text-[9px] font-body font-bold flex items-center justify-center">0</span>
             </button>
             <button className="md:hidden flex flex-col gap-1.5 p-1" onClick={() => setMobileOpen(true)}>
               <span className="block w-5 h-[1.5px] bg-deep-bronze" />

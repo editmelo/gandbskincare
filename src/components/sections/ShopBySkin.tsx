@@ -26,7 +26,7 @@ export function ShopBySkin() {
                   {icons[concern.id] || "✦"}
                 </div>
                 <h3 className="font-display text-base text-deep-bronze mb-1">{concern.label}</h3>
-                <p className="text-xs font-body text-warm-gold">{concern.productCount} products →</p>
+                <p className="text-xs font-body text-warm-gold group-hover:translate-x-1 transition-transform">See Products →</p>
               </Link>
             ))}
           </div>
