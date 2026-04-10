@@ -3,18 +3,20 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { MobileNav } from "./MobileNav";
 
 const links = [
-  { href: "/shop", label: "Shop" },
-  { href: "/shop?concern=all", label: "Your Skin" },
-  { href: "/results", label: "Results" },
-  { href: "/about", label: "About" },
+  { href: "/shop", label: "Shop", match: "/shop" },
+  { href: "/shop?concern=all", label: "Your Skin", match: "/shop?concern" },
+  { href: "/results", label: "Results", match: "/results" },
+  { href: "/about", label: "About", match: "/about" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -35,15 +37,27 @@ export function Navbar() {
             <span className="font-display text-xl text-warm-gold tracking-wider hidden sm:block">G&amp;B</span>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
-            {links.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-body text-xs text-deep-bronze uppercase tracking-[0.2em] hover:text-warm-gold transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {links.map(link => {
+              const isActive = link.match === "/shop?concern"
+                ? pathname === "/shop" && false
+                : pathname.startsWith(link.match);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative font-body text-xs uppercase tracking-[0.2em] transition-colors pb-1 ${
+                    isActive
+                      ? "text-warm-gold"
+                      : "text-deep-bronze hover:text-warm-gold"
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-warm-gold rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
           <div className="flex items-center gap-4">
             <button className="relative text-deep-bronze hover:text-warm-gold transition-colors" aria-label="Shopping bag">

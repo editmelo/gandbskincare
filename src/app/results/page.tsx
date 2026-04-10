@@ -11,8 +11,6 @@ const tabs: { id: SkinConcern | "all"; label: string }[] = [
   { id: "dark-spots", label: "Dark Spots" },
   { id: "eczema", label: "Eczema" },
   { id: "acne", label: "Acne" },
-  { id: "dryness", label: "Dryness" },
-  { id: "uneven-tone", label: "Uneven Tone" },
 ];
 
 export default function ResultsPage() {

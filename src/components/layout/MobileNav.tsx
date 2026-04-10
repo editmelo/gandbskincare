@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface MobileNavProps {
   open: boolean;
@@ -8,13 +9,15 @@ interface MobileNavProps {
 }
 
 const links = [
-  { href: "/shop", label: "Shop" },
-  { href: "/shop?concern=all", label: "Your Skin" },
-  { href: "/results", label: "Results" },
-  { href: "/about", label: "About" },
+  { href: "/shop", label: "Shop", match: "/shop" },
+  { href: "/shop?concern=all", label: "Your Skin", match: "/shop?concern" },
+  { href: "/results", label: "Results", match: "/results" },
+  { href: "/about", label: "About", match: "/about" },
 ];
 
 export function MobileNav({ open, onClose }: MobileNavProps) {
+  const pathname = usePathname();
+
   return (
     <>
       <div
@@ -33,16 +36,24 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
           <button onClick={onClose} className="text-deep-bronze text-2xl leading-none">&times;</button>
         </div>
         <nav className="p-6 flex flex-col gap-4">
-          {links.map(link => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={onClose}
-              className="font-body text-deep-bronze text-sm uppercase tracking-widest hover:text-warm-gold transition-colors py-2 border-b border-warm-gold/5"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map(link => {
+            const isActive = pathname.startsWith(link.match.split("?")[0]) && link.match !== "/shop?concern";
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={onClose}
+                className={`font-body text-sm uppercase tracking-widest transition-colors py-2 border-b border-warm-gold/5 flex items-center justify-between ${
+                  isActive
+                    ? "text-warm-gold font-semibold"
+                    : "text-deep-bronze hover:text-warm-gold"
+                }`}
+              >
+                {link.label}
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-warm-gold" />}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </>
