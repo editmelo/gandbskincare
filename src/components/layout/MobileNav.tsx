@@ -10,7 +10,7 @@ interface MobileNavProps {
 
 const links = [
   { href: "/shop", label: "Shop", match: "/shop" },
-  { href: "/shop?concern=all", label: "Your Skin", match: "/shop?concern" },
+  { href: "/shop?view=skin", label: "Your Skin", match: "/shop?view=skin" },
   { href: "/results", label: "Results", match: "/results" },
   { href: "/about", label: "About", match: "/about" },
 ];
