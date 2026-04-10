@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Product } from "@/data/products";
 import { StarRating } from "./StarRating";
 
@@ -19,16 +20,20 @@ export function ProductCard({ product, dark = false, badge }: ProductCardProps) 
         <div className={`relative h-52 flex items-center justify-center ${
           dark ? "bg-gradient-to-b from-warm-gold/10 to-transparent" : "bg-gradient-to-b from-light-beige to-cream/30"
         }`}>
-          <div className={`w-20 h-28 rounded-[20px_20px_8px_8px] ${
-            dark ? "bg-warm-gold/[0.18] border border-warm-gold/25" : "bg-warm-gold/10 border border-warm-gold/20"
-          }`} />
+          {product.image ? (
+            <Image src={product.image} alt={product.name} fill className="object-contain p-4" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+          ) : (
+            <div className={`w-20 h-28 rounded-[20px_20px_8px_8px] ${
+              dark ? "bg-warm-gold/[0.18] border border-warm-gold/25" : "bg-warm-gold/10 border border-warm-gold/20"
+            }`} />
+          )}
           {badge && (
-            <span className="absolute top-3 left-3 bg-warm-gold text-espresso text-[9px] font-bold font-body uppercase tracking-wider px-3 py-1 rounded-full">
+            <span className="absolute top-3 left-3 bg-warm-gold text-espresso text-[9px] font-bold font-body uppercase tracking-wider px-3 py-1 rounded-full z-10">
               {badge}
             </span>
           )}
           {product.preorder && (
-            <span className="absolute top-3 right-3 bg-deep-bronze text-cream text-[9px] font-bold font-body uppercase tracking-wider px-3 py-1 rounded-full">
+            <span className="absolute top-3 right-3 bg-deep-bronze text-cream text-[9px] font-bold font-body uppercase tracking-wider px-3 py-1 rounded-full z-10">
               Pre-order
             </span>
           )}

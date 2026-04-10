@@ -2,6 +2,7 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { getProductBySlug, products, regimenProducts } from "@/data/products";
 import { getReviewsByProduct } from "@/data/reviews";
 import { results } from "@/data/results";
@@ -68,8 +69,12 @@ function ProductDetail({
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-light-beige to-cream flex items-center justify-center border border-warm-gold/10">
-                <div className="w-40 h-56 rounded-[30px_30px_12px_12px] bg-warm-gold/15 border border-warm-gold/20" />
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-light-beige to-cream flex items-center justify-center border border-warm-gold/10 relative overflow-hidden">
+                {product.image ? (
+                  <Image src={product.image} alt={product.name} fill className="object-contain p-8" sizes="(max-width: 768px) 100vw, 50vw" />
+                ) : (
+                  <div className="w-40 h-56 rounded-[30px_30px_12px_12px] bg-warm-gold/15 border border-warm-gold/20" />
+                )}
               </div>
               <div className="flex gap-2 mt-3">
                 {[1, 2, 3].map(i => (

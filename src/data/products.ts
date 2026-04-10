@@ -26,11 +26,13 @@ export interface Product {
   ingredients?: string[];
   keyIngredient?: { name: string; benefit: string };
   preorder?: boolean;
+  image?: string;
 }
 
 export const products: Product[] = [
   {
     slug: "glow-cleansing-bar",
+    image: "/products/glow-cleansing-bar.jpg",
     name: "Glow Cleansing Bar",
     subtitle: "Honey & Turmeric",
     description: "A gentle yet effective cleansing bar infused with raw honey and turmeric to brighten skin, reduce dark spots, and reveal your natural glow. Perfect for daily use on face and body.",
@@ -51,6 +53,7 @@ export const products: Product[] = [
   },
   {
     slug: "vitamin-c-serum",
+    image: "/products/vitamin-c-serum.jpg",
     name: "Vitamin C Serum",
     subtitle: "Brightening Treatment",
     description: "A potent vitamin C serum that targets dark spots, evens skin tone, and boosts collagen production for visibly brighter, firmer skin.",
@@ -67,6 +70,7 @@ export const products: Product[] = [
   },
   {
     slug: "dark-spot-cream",
+    image: "/products/dark-spot-cream.jpg",
     name: "Dark Spot Cream",
     subtitle: "Corrective Treatment",
     description: "An intensive corrective cream formulated to fade stubborn dark spots, sun damage, and post-acne marks. Use nightly for transformative results.",
@@ -81,6 +85,7 @@ export const products: Product[] = [
   },
   {
     slug: "nighttime-dark-spot-corrector",
+    image: "/products/nighttime-dark-spot-corrector.jpg",
     name: "Nighttime Dark Spot Corrector",
     subtitle: "Overnight Repair",
     description: "Work on your dark spots while you sleep. This overnight corrector penetrates deeply to break up hyperpigmentation and reveal brighter skin by morning.",
@@ -94,6 +99,7 @@ export const products: Product[] = [
   },
   {
     slug: "rose-water-toner",
+    image: "/products/rose-water-toner.jpg",
     name: "Rose Water Toner",
     subtitle: "Hydrating Balance",
     description: "A soothing rose water toner that balances pH, tightens pores, and preps skin for serums and moisturizers. Mist throughout the day for a dewy refresh.",
@@ -113,6 +119,7 @@ export const products: Product[] = [
   },
   {
     slug: "nourish-moisturizing-oil",
+    image: "/products/nourish-moisturizing-oil.jpg",
     name: "Nourish Moisturizing Oil",
     subtitle: "Daily Hydration",
     description: "A lightweight yet deeply nourishing facial oil that locks in moisture, soothes dry patches, and gives skin a healthy, radiant finish.",
@@ -133,6 +140,7 @@ export const products: Product[] = [
   },
   {
     slug: "eczema-oatmeal-bar",
+    image: "/products/eczema-oatmeal-bar.jpg",
     name: "Eczema Oatmeal Bar",
     subtitle: "Gentle Relief",
     description: "A soothing cleansing bar made with colloidal oatmeal and shea butter to calm eczema flare-ups, reduce itching, and restore the skin barrier.",
@@ -146,6 +154,7 @@ export const products: Product[] = [
   },
   {
     slug: "eczema-pudding-cream",
+    image: "/products/eczema-pudding-cream.jpg",
     name: "Eczema Pudding Cream",
     subtitle: "Intensive Moisture",
     description: "A thick, pudding-like cream that provides intense moisture and relief for eczema-prone skin. Locks in hydration for hours and calms irritation.",
@@ -159,6 +168,7 @@ export const products: Product[] = [
   },
   {
     slug: "blemish-corrector-kit",
+    image: "/products/blemish-corrector-kit.jpg",
     name: "Blemish Corrector Kit",
     subtitle: "Complete Acne Solution",
     description: "Everything you need to fight breakouts and fade acne scars. This kit includes a targeted cleanser, spot treatment, and lightweight moisturizer.",
@@ -172,6 +182,7 @@ export const products: Product[] = [
   },
   {
     slug: "exfoliating-turmeric-scrub",
+    image: "/products/exfoliating-turmeric-scrub.jpg",
     name: "Exfoliating Turmeric Scrub",
     subtitle: "Brightening Exfoliant",
     description: "A gentle yet effective scrub that buffs away dead skin cells while turmeric brightens and evens skin tone. Use 2-3 times weekly for best results.",
@@ -190,6 +201,7 @@ export const products: Product[] = [
   },
   {
     slug: "turmeric-mud-mask",
+    image: "/products/turmeric-mud-mask.jpg",
     name: "Turmeric Mud Mask & Silicone Brush Duo",
     subtitle: "Deep Cleansing Mask",
     description: "A detoxifying mud mask infused with turmeric that draws out impurities, tightens pores, and leaves skin glowing. Comes with a silicone brush for easy application.",
@@ -203,6 +215,7 @@ export const products: Product[] = [
   },
   {
     slug: "hydrating-jelly-mask",
+    image: "/products/hydrating-jelly-mask.jpg",
     name: "Hydrating Jelly Mask",
     subtitle: "Moisture Boost",
     description: "A bouncy jelly mask that floods skin with hydration. Perfect for dry, dehydrated skin that needs a moisture reset. Use weekly for plump, dewy results.",
@@ -216,6 +229,7 @@ export const products: Product[] = [
   },
   {
     slug: "turmeric-cleansing-pads",
+    image: "/products/turmeric-cleansing-pads.jpg",
     name: "Turmeric Cleansing Pads",
     subtitle: "On-the-Go Glow",
     description: "Pre-soaked cleansing pads infused with turmeric and witch hazel for a quick cleanse and tone on the go. Perfect for travel and post-workout freshening.",
@@ -233,6 +247,7 @@ export const products: Product[] = [
   },
   {
     slug: "facial-cleansing-brush",
+    image: "/products/facial-cleansing-brush.jpg",
     name: "Facial Cleansing Brush",
     subtitle: "Deep Clean Tool",
     description: "A soft-bristle cleansing brush that helps work your cleansing bar deeper into pores for a more thorough clean. Gentle enough for daily use.",
@@ -244,6 +259,7 @@ export const products: Product[] = [
   },
   {
     slug: "glow-pack",
+    image: "/products/glow-pack.jpg",
     name: "Glow Pack",
     subtitle: "Starter Bundle",
     description: "The perfect introduction to G&B. Includes our best-selling Glow Cleansing Bar and Vitamin C Serum in travel-friendly sizes.",
@@ -261,6 +277,7 @@ export const products: Product[] = [
   },
   {
     slug: "glow-pack-2",
+    image: "/products/glow-pack-2.jpg",
     name: "Glow Pack 2.0",
     subtitle: "Complete Glow System",
     description: "Our most comprehensive glow kit — includes the Glow Cleansing Bar, Rose Water Toner, Vitamin C Serum, and Nourish Moisturizing Oil. Everything you need for a full glow-up routine.",
@@ -272,6 +289,7 @@ export const products: Product[] = [
   },
   {
     slug: "herbal-hair-growth-oil",
+    image: "/products/herbal-hair-growth-oil.jpg",
     name: "Herbal Hair Growth Oil",
     subtitle: "Scalp & Hair Nourishment",
     description: "A nourishing herbal oil blend that stimulates hair growth, strengthens strands, and soothes dry scalp. Massage into scalp 2-3 times weekly.",
@@ -285,6 +303,7 @@ export const products: Product[] = [
   },
   {
     slug: "phresh-p-yoni-bar",
+    image: "/products/phresh-p-yoni-bar.jpg",
     name: "Phresh P Yoni Bar",
     subtitle: "Feminine Wash Bar",
     description: "A pH-balanced feminine wash bar made with natural ingredients to gently cleanse, maintain freshness, and support intimate health.",
@@ -302,6 +321,7 @@ export const products: Product[] = [
   },
   {
     slug: "stay-phresh-yoni-wash",
+    image: "/products/stay-phresh-yoni-wash.jpg",
     name: "Stay Phresh Yoni Wash",
     subtitle: "Liquid Feminine Wash",
     description: "A gentle liquid feminine wash that cleanses, refreshes, and maintains optimal pH balance. Available in soothing or cooling formula.",
@@ -315,6 +335,7 @@ export const products: Product[] = [
   },
   {
     slug: "turmeric-glow-wash",
+    image: "/products/turmeric-glow-wash.jpg",
     name: "Turmeric Glow Wash",
     subtitle: "Liquid Cleanser",
     description: "A foaming liquid cleanser with turmeric and honey that brightens skin while gently removing impurities. The liquid version of our best-selling Glow Bar.",
@@ -329,6 +350,7 @@ export const products: Product[] = [
   },
   {
     slug: "ultimate-glow-bundle",
+    image: "/products/ultimate-glow-bundle.jpg",
     name: "Ultimate Glow Bundle",
     subtitle: "The Full Experience",
     description: "Our most luxurious offering — every product in the G&B glow lineup bundled together at a special price. The ultimate gift for yourself or someone who deserves to glow.",
