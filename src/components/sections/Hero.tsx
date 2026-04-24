@@ -4,10 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { skinConcerns } from "@/data/products";
 import { ConcernPill } from "@/components/shared/ConcernPill";
+import { HoneyDrip } from "@/components/shared/HoneyDrip";
 
 export function Hero() {
   return (
     <section className="relative min-h-[500px] md:min-h-[600px] overflow-hidden">
+      {/* Decorative honey drip under the nav */}
+      <HoneyDrip />
+
       {/* Full background image */}
       <div className="absolute inset-0">
         <Image
