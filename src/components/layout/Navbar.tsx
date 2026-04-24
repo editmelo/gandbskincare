@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -13,17 +13,9 @@ const links = [
   { href: "/about", label: "About" },
 ];
 
-export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+function NavLinks() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   function isLinkActive(link: typeof links[number]) {
     if (link.label === "Shop") {
@@ -34,6 +26,57 @@ export function Navbar() {
     }
     return pathname.startsWith(link.href.split("?")[0]) && link.label !== "Shop" && link.label !== "Your Skin";
   }
+
+  return (
+    <nav className="hidden md:flex items-center gap-8">
+      {links.map(link => {
+        const isActive = isLinkActive(link);
+        return (
+          <Link
+            key={link.label}
+            href={link.href}
+            className={`relative font-body text-xs uppercase tracking-[0.2em] transition-colors pb-1 ${
+              isActive
+                ? "text-warm-gold"
+                : "text-deep-bronze hover:text-warm-gold"
+            }`}
+          >
+            {link.label}
+            {isActive && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-warm-gold rounded-full" />
+            )}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
+function NavLinksFallback() {
+  return (
+    <nav className="hidden md:flex items-center gap-8">
+      {links.map(link => (
+        <Link
+          key={link.label}
+          href={link.href}
+          className="relative font-body text-xs uppercase tracking-[0.2em] transition-colors pb-1 text-deep-bronze hover:text-warm-gold"
+        >
+          {link.label}
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -47,27 +90,9 @@ export function Navbar() {
             <Image src="/logo.avif" alt="G&B Natural Skincare" width={40} height={40} className="rounded-full" />
             <span className="font-display text-xl text-warm-gold tracking-wider hidden sm:block">G&amp;B</span>
           </Link>
-          <nav className="hidden md:flex items-center gap-8">
-            {links.map(link => {
-              const isActive = isLinkActive(link);
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`relative font-body text-xs uppercase tracking-[0.2em] transition-colors pb-1 ${
-                    isActive
-                      ? "text-warm-gold"
-                      : "text-deep-bronze hover:text-warm-gold"
-                  }`}
-                >
-                  {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-warm-gold rounded-full" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
+          <Suspense fallback={<NavLinksFallback />}>
+            <NavLinks />
+          </Suspense>
           <div className="flex items-center gap-4">
             <button className="relative text-deep-bronze hover:text-warm-gold transition-colors" aria-label="Shopping bag">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
