@@ -42,6 +42,26 @@
     0% { opacity: 0; transform: translateY(-10px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+
+  --animate-honey-pour-center: honey-pour-center 0.8s ease-out both;
+  --animate-honey-pour-left: honey-pour-left 0.8s ease-out both;
+  --animate-honey-drip: honey-drip 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  @keyframes honey-pour-center {
+    0% { clip-path: inset(0 50% 0 50%); }
+    100% { clip-path: inset(0 0 0 0); }
+  }
+
+  @keyframes honey-pour-left {
+    0% { clip-path: inset(0 100% 0 0); }
+    100% { clip-path: inset(0 0 0 0); }
+  }
+
+  @keyframes honey-drip {
+    0% { transform: scaleY(0); }
+    80% { transform: scaleY(1.04); }
+    100% { transform: scaleY(1); }
+  }
 }
 
 @layer base {
@@ -145,4 +165,22 @@
   .animate-delay-300 { animation-delay: 300ms; }
   .animate-delay-400 { animation-delay: 400ms; }
   .animate-delay-500 { animation-delay: 500ms; }
+  .animate-delay-600 { animation-delay: 600ms; }
+  .animate-delay-700 { animation-delay: 700ms; }
+  .animate-delay-800 { animation-delay: 800ms; }
+  .animate-delay-900 { animation-delay: 900ms; }
+  .animate-delay-1000 { animation-delay: 1000ms; }
+  .animate-delay-1100 { animation-delay: 1100ms; }
+  .animate-delay-1300 { animation-delay: 1300ms; }
+  .animate-delay-1500 { animation-delay: 1500ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-honey-pour-center,
+  .animate-honey-pour-left,
+  .animate-honey-drip {
+    animation: none !important;
+    clip-path: inset(0 0 0 0) !important;
+    transform: scaleY(1) !important;
+  }
 }
